@@ -6,16 +6,59 @@
   <title>Bertram C Russell | SRE DevOps Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #60a5fa;
+      --heading-border: #1e293b;
+    }
+    .light-mode {
+      --bg: #ffffff;
+      --surface: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --heading-border: #e2e8f0;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
     a { text-decoration: none; color: inherit; }
 
     .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      color: var(--text);
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: scale(1.1);
+    }
 
     /* Hero */
     .hero {
@@ -30,14 +73,14 @@
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+      background: linear-gradient(135deg, var(--accent), #a78bfa, #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 16px;
     }
     .hero p {
       font-size: 1.2rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       max-width: 600px;
       margin-bottom: 32px;
     }
@@ -48,7 +91,7 @@
       border: 1px solid rgba(96, 165, 250, 0.3);
       border-radius: 50px;
       font-size: 0.95rem;
-      color: #60a5fa;
+      color: var(--accent);
       margin-bottom: 40px;
     }
     .social-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
@@ -59,12 +102,12 @@
       font-weight: 500;
       font-size: 0.95rem;
       transition: all 0.3s;
-      border: 1px solid #1e293b;
-      background: #1e293b;
+      border: 1px solid var(--border);
+      background: var(--surface);
     }
     .social-links a:hover {
       transform: translateY(-3px);
-      border-color: #60a5fa;
+      border-color: var(--accent);
       background: rgba(96, 165, 250, 0.1);
     }
     .social-links a.github:hover { border-color: #fff; }
@@ -73,17 +116,15 @@
     .social-links a.naukri:hover { border-color: #f97316; }
     .social-links a.resume:hover { border-color: #22c55e; }
 
-    /* Profile Image */
     .profile-img {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-      border: 4px solid #60a5fa;
+      border: 4px solid var(--accent);
       margin-bottom: 24px;
       box-shadow: 0 0 40px rgba(96, 165, 250, 0.4);
-      image-rendering: auto;
     }
 
     .scroll-indicator {
@@ -111,7 +152,7 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: #1e293b;
+      background: var(--heading-border);
     }
 
     /* About */
@@ -124,7 +165,7 @@
       .about-content { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.2rem; }
     }
-    .about-content p { color: #94a3b8; font-size: 1.05rem; }
+    .about-content p { color: var(--text-muted); font-size: 1.05rem; }
 
     /* Skills */
     .skills-grid {
@@ -133,35 +174,78 @@
       gap: 16px;
     }
     .skill-card {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 20px;
       transition: all 0.3s;
     }
     .skill-card:hover {
-      border-color: #60a5fa;
+      border-color: var(--accent);
       transform: translateY(-2px);
     }
     .skill-card h3 {
       font-size: 0.9rem;
-      color: #60a5fa;
+      color: var(--accent);
       margin-bottom: 8px;
     }
-    .skill-card p { color: #94a3b8; font-size: 0.9rem; }
+    .skill-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 30px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    .timeline-item:hover {
+      border-color: var(--accent);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-item .date {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .timeline-item h3 { font-size: 1rem; margin-bottom: 4px; }
+    .timeline-item p { color: var(--text-muted); font-size: 0.9rem; }
 
     /* Projects */
     .project-card {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 24px;
       margin-bottom: 16px;
       transition: all 0.3s;
     }
-    .project-card:hover { border-color: #60a5fa; }
+    .project-card:hover { border-color: var(--accent); }
     .project-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-    .project-card p { color: #94a3b8; font-size: 0.95rem; }
+    .project-card p { color: var(--text-muted); font-size: 0.95rem; }
     .project-card .tags {
       display: flex;
       flex-wrap: wrap;
@@ -173,7 +257,20 @@
       background: rgba(96, 165, 250, 0.1);
       border-radius: 50px;
       font-size: 0.8rem;
-      color: #60a5fa;
+      color: var(--accent);
+    }
+
+    /* GitHub Stats */
+    .github-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .github-stats img {
+      max-width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
 
     /* Contact */
@@ -186,14 +283,14 @@
     .contact-links a {
       display: flex; align-items: center; gap: 8px;
       padding: 14px 28px;
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       font-weight: 500;
       transition: all 0.3s;
     }
     .contact-links a:hover {
-      border-color: #60a5fa;
+      border-color: var(--accent);
       background: rgba(96, 165, 250, 0.1);
       transform: translateY(-3px);
     }
@@ -201,15 +298,16 @@
     footer {
       text-align: center;
       padding: 40px 24px;
-      border-top: 1px solid #1e293b;
+      border-top: 1px solid var(--border);
       color: #475569;
       font-size: 0.85rem;
     }
-
-    .emoji { font-style: normal; }
   </style>
 </head>
 <body>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle theme">&#x263E;</button>
 
   <!-- Hero -->
   <section class="hero">
@@ -274,6 +372,33 @@
       </div>
     </section>
 
+    <!-- Certifications & Timeline -->
+    <section id="timeline">
+      <h2>Certifications & Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">2026 (In Progress)</div>
+          <h3>CKA — Certified Kubernetes Administrator</h3>
+          <p>Preparing for the CKA exam to deepen Kubernetes expertise.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="date">2026 (In Progress)</div>
+          <h3>AWS Solutions Architect Associate</h3>
+          <p>Studying AWS fundamentals including VPC, EC2, S3, RDS, and IAM.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="date">2026 (Planned)</div>
+          <h3>LFCS — Linux Foundation Certified Sysadmin</h3>
+          <p>Planning to certify in Linux system administration.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="date">2026</div>
+          <h3>SRE + DevSecOps + AI Interview Prep</h3>
+          <p>Structured 5-month roadmap targeting top product companies.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Projects -->
     <section id="projects">
       <h2>Projects</h2>
@@ -294,6 +419,15 @@
       </div>
     </section>
 
+    <!-- GitHub Stats -->
+    <section id="stats">
+      <h2>GitHub Analytics</h2>
+      <div class="github-stats">
+        <img src="https://github-readme-stats.vercel.app/api?username=Bertrussoff&show_icons=true&hide_border=true&icon_color=60a5fa&text_color=94a3b8&bg_color=1e293b&title_color=60a5fa" alt="GitHub Stats">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Bertrussoff&layout=compact&hide_border=true&text_color=94a3b8&bg_color=1e293b&title_color=60a5fa" alt="Top Languages">
+      </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact">
       <h2>Get In Touch</h2>
@@ -310,6 +444,23 @@
   <footer>
     <p>Built with &hearts; | Bertram C Russell &copy; 2026</p>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+      toggle.textContent = '\u2600';
+    }
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      toggle.textContent = isLight ? '\u2600' : '\u263E';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  </script>
 
 </body>
 </html>
