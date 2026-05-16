@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bertram C Russell | SRE DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+    .hero .tagline {
+      display: inline-block;
+      padding: 10px 24px;
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      border-radius: 50px;
+      font-size: 0.95rem;
+      color: #60a5fa;
+      margin-bottom: 40px;
+    }
+    .social-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .social-links a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      border: 1px solid #1e293b;
+      background: #1e293b;
+    }
+    .social-links a:hover {
+      transform: translateY(-3px);
+      border-color: #60a5fa;
+      background: rgba(96, 165, 250, 0.1);
+    }
+    .social-links a.github:hover { border-color: #fff; }
+    .social-links a.linkedin:hover { border-color: #0a66c2; }
+    .social-links a.email:hover { border-color: #f472b6; }
+    .social-links a.naukri:hover { border-color: #f97316; }
+
+    .scroll-indicator {
+      margin-top: 60px;
+      animation: bounce 2s infinite;
+      color: #475569;
+      font-size: 0.85rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    section h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #1e293b;
+    }
+
+    /* About */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 640px) {
+      .about-content { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+    .about-content p { color: #94a3b8; font-size: 1.05rem; }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+    .skill-card:hover {
+      border-color: #60a5fa;
+      transform: translateY(-2px);
+    }
+    .skill-card h3 {
+      font-size: 0.9rem;
+      color: #60a5fa;
+      margin-bottom: 8px;
+    }
+    .skill-card p { color: #94a3b8; font-size: 0.9rem; }
+
+    /* Projects */
+    .project-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: all 0.3s;
+    }
+    .project-card:hover { border-color: #60a5fa; }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .project-card p { color: #94a3b8; font-size: 0.95rem; }
+    .project-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .project-card .tags span {
+      padding: 4px 12px;
+      background: rgba(96, 165, 250, 0.1);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #60a5fa;
+    }
+
+    /* Contact */
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .contact-links a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 28px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .contact-links a:hover {
+      border-color: #60a5fa;
+      background: rgba(96, 165, 250, 0.1);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid #1e293b;
+      color: #475569;
+      font-size: 0.85rem;
+    }
+
+    .emoji { font-style: normal; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="tagline">SRE DevOps Engineer with AI Focus</div>
+    <h1>Bertram C Russell</h1>
+    <p>Building reliable, secure, and intelligent infrastructure. Passionate about Site Reliability, DevSecOps, and AI-driven operations.</p>
+    <div class="social-links">
+      <a href="https://github.com/Bertrussoff" target="_blank" class="github">
+        <span>&#xe718;</span> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/bertramrussell" target="_blank" class="linkedin">
+        <span>&#xe70a;</span> LinkedIn
+      </a>
+      <a href="https://www.naukri.com" target="_blank" class="naukri">
+        <span>&#x1F4BC;</span> Naukri - Bertram Russell
+      </a>
+      <a href="mailto:bertram@example.com" class="email">
+        <span>&#x2709;</span> Email
+      </a>
+    </div>
+    <div class="scroll-indicator">&#x2193; Scroll to explore</div>
+  </section>
+
+  <!-- About -->
+  <div class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <p>
+          I'm an aspiring SRE and DevOps Engineer with a strong focus on integrating AI into infrastructure and operations. I'm passionate about building resilient, scalable systems and automating away toil.
+        </p>
+        <p>
+          Currently preparing for top product companies with deep dives into Linux, Kubernetes, observability, security, and AIOps. I believe in blameless culture, data-driven decisions, and continuous learning.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills & Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>SRE & Observability</h3>
+          <p>SLIs/SLOs, Error Budgets, Prometheus, Grafana, ELK Stack, Jaeger, Incident Management</p>
+        </div>
+        <div class="skill-card">
+          <h3>DevSecOps</h3>
+          <p>CI/CD, Docker, Kubernetes, Terraform, Ansible, SAST/DAST, OPA, Falco, Trivy</p>
+        </div>
+        <div class="skill-card">
+          <h3>Cloud & Infrastructure</h3>
+          <p>AWS (VPC, EC2, S3, RDS, IAM), Linux, Networking, Nginx, Load Balancing</p>
+        </div>
+        <div class="skill-card">
+          <h3>AI & ML Ops</h3>
+          <p>Anomaly Detection, Time-Series Forecasting, LLMs, AIOps, Prompt Engineering</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>Microservices Monitoring Stack</h3>
+        <p>Deployed a full observability stack with Prometheus, Grafana, Loki, and Jaeger for a microservices application.</p>
+        <div class="tags"><span>Docker</span><span>Prometheus</span><span>Grafana</span><span>Loki</span></div>
+      </div>
+      <div class="project-card">
+        <h3>Kubernetes GitOps Pipeline</h3>
+        <p>CI/CD pipeline with GitHub Actions, container scanning (Trivy), and ArgoCD for GitOps deployments.</p>
+        <div class="tags"><span>Kubernetes</span><span>ArgoCD</span><span>GitHub Actions</span><span>Trivy</span></div>
+      </div>
+      <div class="project-card">
+        <h3>AI-Powered Incident Response</h3>
+        <p>Built an anomaly detection system on metrics and a Slack bot using LLMs for automated remediation suggestions.</p>
+        <div class="tags"><span>Python</span><span>scikit-learn</span><span>OpenAI</span><span>Slack API</span></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      <div class="contact-links">
+        <a href="https://github.com/Bertrussoff" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/bertramrussell" target="_blank">LinkedIn</a>
+        <a href="https://www.naukri.com" target="_blank">Naukri - Bertram Russell</a>
+        <a href="mailto:bertram@example.com">Email Me</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>Built with &hearts; | Bertram C Russell &copy; 2026</p>
+  </footer>
+
+</body>
+</html>
